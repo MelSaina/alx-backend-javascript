@@ -1,33 +1,35 @@
 module.exports = {
-    "env": {
-        "browser": true,
-        "es2021": true,
-        "node": true
+    env: {
+      browser: false,
+      es6: true,
+      jest: true,
     },
-    "extends": [
-        "eslint:recommended",
-        "plugin:vue/vue3-essential"
+    extends: [
+      'airbnb-base',
+      'plugin:jest/all',
     ],
-    "overrides": [
-        {
-            "env": {
-                "node": true
-            },
-            "files": [
-                ".eslintrc.{js,cjs}"
-            ],
-            "parserOptions": {
-                "sourceType": "script"
-            }
-        }
-    ],
-    "parserOptions": {
-        "ecmaVersion": "latest",
-        "sourceType": "module"
+    globals: {
+      Atomics: 'readonly',
+      SharedArrayBuffer: 'readonly',
     },
-    "plugins": [
-        "vue"
-    ],
-    "rules": {
-    }
-}
+    parserOptions: {
+      ecmaVersion: 2018,
+      sourceType: 'module',
+    },
+    plugins: ['jest'],
+    rules: {
+      'no-console': 'off',
+      'no-shadow': 'off',
+      'no-restricted-syntax': [
+        'error',
+        'LabeledStatement',
+        'WithStatement',
+      ],
+    },
+    overrides:[
+      {
+        files: ['*.js'],
+        excludedFiles: 'babel.config.js',
+      }
+    ]
+  };
